@@ -5,8 +5,7 @@
  * Description: Creates a encrypted string at compile time, that can be decrypted and encrypted at the runtime.
  */
 #pragma once
-
-#include <string>
+#include <utility>
 
 #ifdef _MSC_VER
 #define ALWAYS_INLINE __forceinline
@@ -34,12 +33,6 @@ public:
 	{
 		decrypt();
 		return data;
-	}
-
-	auto str() const
-	{
-		decrypt();
-		return std::basic_string<T>(data, data + kLengthMinusOne);
 	}
 
 	operator std::basic_string<T>() const
@@ -118,7 +111,7 @@ constexpr ALWAYS_INLINE auto _xor_(const T (&str)[L])
 template<typename T, size_t L, size_t LC>
 auto operator==(const XorStrEx<T, L> &lhs, const XorStrEx<T, LC> &rhs)
 {
-	static_assert(L == LC, "XorStrEx length is different");
+	static_assert(L == LC);
 
 	return L == LC && lhs.str() == rhs.str();
 }
