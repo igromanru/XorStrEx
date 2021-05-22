@@ -71,6 +71,16 @@ public:
 		}
 	}
 
+	size_t copyTo(T* target) const
+	{
+		decrypt();
+		for (size_t i = 0; i < L; i++)
+		{
+			target[i] = data[i];
+		}
+		return L - 1;
+	}
+
 private:
 	mutable T data[L];
 	mutable bool encrypted;
