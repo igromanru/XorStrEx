@@ -25,6 +25,12 @@ public:
 	{
 	}
 
+	operator const T* ()
+	{
+		decrypt();
+		return data;
+	}
+
 	auto c_str_raw() const
 	{
 		return data;
