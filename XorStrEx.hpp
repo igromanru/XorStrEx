@@ -5,7 +5,6 @@
  * Description: Creates a encrypted string at compile time, that can be decrypted and encrypted at the runtime.
  */
 #pragma once
-#include <utility>
 
 #ifdef _MSC_VER
 #define ALWAYS_INLINE __forceinline
@@ -39,11 +38,6 @@ public:
 	{
 		decrypt();
 		return data;
-	}
-
-	operator std::basic_string<T>() const
-	{
-		return str();
 	}
 
 	void encrypt() const
