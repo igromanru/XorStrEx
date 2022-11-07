@@ -17,8 +17,6 @@
 template<typename T, size_t L>
 class XorStrEx
 {
-	static constexpr auto kLengthMinusOne = L - 1;
-
 public:
 	constexpr ALWAYS_INLINE XorStrEx(T const (&str)[L])
 		: XorStrEx(str, std::make_index_sequence<kLengthMinusOne>())
@@ -78,10 +76,12 @@ public:
 		{
 			target[i] = data[i];
 		}
-		return L - 1;
+		return kLengthMinusOne;
 	}
 
 private:
+	static constexpr auto kLengthMinusOne = L - 1;
+
 	mutable T data[L];
 	mutable bool encrypted;
 
